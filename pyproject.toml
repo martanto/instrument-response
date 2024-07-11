@@ -1,0 +1,43 @@
+[build-system]
+requires = ["flit_core>=3.4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name =  "instrument-response"
+version = "1.0.0"
+authors = [
+    {name = "Martanto", email = "martanto@live.com"},
+    {name = "Sulistyani", emaol = "sulistyani@gmail.com"}
+]
+description = "Instrument response catalog for PVMBG"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["seismic", "volcano", "volcanology", "instrument responses", "pvmbg", "seiscomp", "psd"]
+requires-python = ">=3.10"
+dependencies = [
+    "obspy",
+    "openpyxl",
+    "pandas",
+    "peewee",
+    "importlib-resources",
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.optional-dependencies]
+base = [
+    "obspy",
+    "openpyxl",
+    "pandas",
+    "peewee",
+    "importlib-resources",
+]
+
+[project.urls]
+Homepage = "https://github.com/martanto/instrument-response"
+Issues = "https://github.com/martanto/instrument-response/issues"
