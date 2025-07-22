@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<seiscomp xmlns="http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.7" version="0.7">
+  <Inventory>
+    <sensor publicID="Sensor#20210808160420.961113.38692" name="VDAP L4" response="ResponsePAZ#20210808155349.833684.15163">
+      <description>f(0) = 1Hz, G=100v/m/sec, B=.8</description>
+      <model>L4</model>
+      <manufacturer>Sercel</manufacturer>
+      <type>1-Hz SP ve</type>
+      <unit>V</unit>
+      <lowFrequency>0.1</lowFrequency>
+      <highFrequency>50</highFrequency>
+      <remark>Sercel L4C</remark>
+    </sensor>
+    <datalogger publicID="Datalogger#20240314081605.44703.51552" name="PSN ADC 16bit +/- 5 Volt with 60dB McVCO">
+      <description>PSN ADC 16 bit dengan McVCO di lapangan gain 60dB</description>
+      <digitizerModel>PSN ADC 16 bit</digitizerModel>
+      <digitizerManufacturer>Webtronics</digitizerManufacturer>
+      <clockModel>18x LVC OEM</clockModel>
+      <clockManufacturer>Garmin</clockManufacturer>
+      <gain>1</gain>
+      <decimation sampleRateNumerator="100" sampleRateDenominator="1">
+        <analogueFilterChain>ResponsePAZ#20240314080946.063278.249 ResponsePAZ#20210808155437.198515.15257 ResponsePAZ#20210808155851.085545.39626 ResponsePAZ#20210808155654.363691.62123</analogueFilterChain>
+        <digitalFilterChain>ResponsePAZ#20230906032120.674604.54204</digitalFilterChain>
+      </decimation>
+    </datalogger>
+    <responsePAZ publicID="ResponsePAZ#20210808155349.833684.15163" name="VDAP_L4">
+      <type>A</type>
+      <gain>62.5</gain>
+      <gainFrequency>1</gainFrequency>
+      <normalizationFactor>1</normalizationFactor>
+      <normalizationFrequency>1</normalizationFrequency>
+      <numberOfZeros>2</numberOfZeros>
+      <numberOfPoles>2</numberOfPoles>
+      <zeros>(0,0) (0,0)</zeros>
+      <poles>(-5.02654,3.76991) (-5.02654,-3.76991)</poles>
+      <remark>damping = .8, motor const = 100v/m/sec, f0=1hz</remark>
+    </responsePAZ>
+    <responsePAZ publicID="ResponsePAZ#20210808155437.198515.15257" name="4th order 30Hz low-pass butterworth filter">
+      <type>A</type>
+      <gain>1</gain>
+      <gainFrequency>1</gainFrequency>
+      <normalizationFactor>1260000000</normalizationFactor>
+      <normalizationFrequency>1</normalizationFrequency>
+      <numberOfPoles>4</numberOfPoles>
+      <poles>(-72.134,174.147) (-72.134,-174.147) (-174.147,72.134) (174.147,-72.134)</poles>
+      <remark>gain &amp; normalization may be switched, idk. 
+Zeros? form requires at least one but I see no references to zeros in discussions of butterworth filters, nor in calculated responses</remark>
+    </responsePAZ>
+    <responsePAZ publicID="ResponsePAZ#20210808155654.363691.62123" name="4th order 20 Hz lo-pass filter">
+      <type>A</type>
+      <gain>1</gain>
+      <gainFrequency>1</gainFrequency>
+      <normalizationFactor>249000000</normalizationFactor>
+      <normalizationFrequency>1</normalizationFrequency>
+      <numberOfPoles>4</numberOfPoles>
+      <poles>(-48.0894,116.098) (-48.0894,-116.098) (-116.098,48.0894) (-116.098,-48.0894)</poles>
+      <remark>norm, sensitivity may have been swapped</remark>
+    </responsePAZ>
+    <responsePAZ publicID="ResponsePAZ#20210808155851.085545.39626" name="VDAP telem gain">
+      <type>A</type>
+      <gain>0.567901235</gain>
+      <gainFrequency>1</gainFrequency>
+      <normalizationFactor>1</normalizationFactor>
+      <normalizationFrequency>1</normalizationFrequency>
+      <remark>VDAP telemetry gain. Attenuation through McVCO - Discriminator</remark>
+    </responsePAZ>
+    <responsePAZ publicID="ResponsePAZ#20230906032120.674604.54204" name="PSN ADC 16bit +/- 5 Volts">
+      <type>A</type>
+      <gain>6553.6</gain>
+      <gainFrequency>1</gainFrequency>
+      <normalizationFactor>1</normalizationFactor>
+      <normalizationFrequency>1</normalizationFrequency>
+    </responsePAZ>
+    <responsePAZ publicID="ResponsePAZ#20240314080946.063278.249" name="60dB McVCO Gain">
+      <type>A</type>
+      <gain>1000</gain>
+      <gainFrequency>1</gainFrequency>
+      <normalizationFactor>1</normalizationFactor>
+      <normalizationFrequency>1</normalizationFrequency>
+      <numberOfPoles>6</numberOfPoles>
+      <poles>(-72.1341,174.147) (-72.1341,-174.147) (-174.147,72.1341) (-174.147,72.1341) (-48.0894,116.098) (-48.0894,-116.098)</poles>
+      <remark>60dB</remark>
+    </responsePAZ>
+    <network publicID="Network#20210808160007.505357.18319" code="VG">
+      <start>2020-01-01T16:00:13.0000Z</start>
+      <description>Stasiun Seismik PVMBG</description>
+      <institutions>PVMBG</institutions>
+      <region>Indonesia</region>
+      <type>BB</type>
+      <archive>VG</archive>
+      <remark>Metadata Seismic Station of CVGHM</remark>
+      <station publicID="Station#20250525063010.817638.20376" code="OJN" archiveNetworkCode="VG">
+        <start>2020-01-01T16:00:13.0000Z</start>
+        <description>Sercel L4C, McVCO 60dB, Diskriminator JD20, ADC PSN 10V range</description>
+        <latitude>-8.502944</latitude>
+        <longitude>122.773722</longitude>
+        <elevation>210</elevation>
+        <place>Stasiun Ojan, Gunung Lewotobi Laki-laki</place>
+        <country>Indonesia</country>
+        <affiliation>PVMBG</affiliation>
+        <type>BB</type>
+        <archive>PVMBG</archive>
+        <sensorLocation publicID="SensorLocation#20250525063011.091035.27927" code="00">
+          <start>2020-01-01T16:00:13.0000Z</start>
+          <latitude>-8.502944</latitude>
+          <longitude>122.773722</longitude>
+          <elevation>210</elevation>
+          <stream code="EHN" datalogger="Datalogger#20240314081605.44703.51552" sensor="Sensor#20210808160420.961113.38692">
+            <start>2020-01-01T16:00:13.0000Z</start>
+            <sampleRateNumerator>100</sampleRateNumerator>
+            <sampleRateDenominator>1</sampleRateDenominator>
+            <depth>0</depth>
+            <azimuth>0</azimuth>
+            <dip>0</dip>
+            <gain>232612345.86</gain>
+            <gainFrequency>1</gainFrequency>
+            <gainUnit>V</gainUnit>
+            <format>Steim2</format>
+            <flags>GC</flags>
+          </stream>
+        </sensorLocation>
+      </station>
+    </network>
+    <network publicID="Network/20250311095742.239876.2" code="VG">
+      <start>1980-01-01T00:00:00.0000Z</start>
+      <description>Guralp Systems</description>
+      <netClass>p</netClass>
+      <archive>PVMBG</archive>
+      <restricted>false</restricted>
+      <shared>true</shared>
+    </network>
+  </Inventory>
+</seiscomp>
